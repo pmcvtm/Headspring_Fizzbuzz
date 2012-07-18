@@ -14,6 +14,7 @@ namespace FizzBuzzLibrary
         {
             DirectoryInfo di = Directory.GetParent(Directory.GetCurrentDirectory());
             basePath = (Directory.GetParent(Directory.GetParent(di.ToString()).ToString()).ToString()) + @"\Output\";
+            Directory.CreateDirectory(basePath);
         }
 
         public void SimpleFizzBuzzToConsole()
