@@ -54,6 +54,35 @@ namespace FizzBuzzLibrary
         //Helper function returns string that's the result of a "fizzbuzz" of the given parameters
         private string FizzBuzzHelper(int min, int max, string word3, string word5)
         {
+
+            if (min >= max)
+                throw new Exception("Start Number is not less than End Number");
+
+            string result = "";
+            for (int i = min; i <= max; i++)  //loop from min to max
+            {
+                if (i % 15 == 0)            //divisible by 15 (== 5*3)
+                    result += word3 + word5;
+                else if (i % 3 == 0)        // or divisible by 3
+                    result += word3;
+                else if (i % 5 == 0)        // or divisible by 5
+                    result += word5;
+                else
+                    result += i;       // the rest of them
+
+                result += " ";
+            }
+
+            return result;
+        }
+
+        //For testing the fizzbuzzhelper
+        public string TestHelper(int min, int max, string word3, string word5)
+        {
+
+            if (min >= max)
+                throw new Exception("Start Number is not less than End Number");
+
             string result = "";
             for (int i = min; i <= max; i++)  //loop from min to max
             {
