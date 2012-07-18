@@ -8,6 +8,14 @@ namespace FizzBuzzLibrary
 {
     public class FizzBuzzer
     {
+        private string basePath;
+
+        public FizzBuzzer()
+        {
+            DirectoryInfo di = Directory.GetParent(Directory.GetCurrentDirectory());
+            basePath = (Directory.GetParent(Directory.GetParent(di.ToString()).ToString()).ToString()) + @"\Output\";
+        }
+
         public void SimpleFizzBuzzToConsole()
         {
             Console.Write(FizzBuzzHelper(1, 100, "Fizz", "Buzz"));
@@ -18,14 +26,28 @@ namespace FizzBuzzLibrary
             Console.Write(FizzBuzzHelper(min,max, wordFor3, wordFor5));
         }
 
-        public void SimpleFizzBuzzToFile()
+        public void SimpleFizzBuzzToFile(string filename)
         {
-            
+            try
+            {
+                File.WriteAllText(basePath + filename + ".txt", FizzBuzzHelper(1, 100, "Fizz", "Buzz"));
+            }
+            catch(IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
-        public void CustomFizzBuzzToFile()
+        public void CustomFizzBuzzToFile(string filename, int min, int max, string wordFor3, string wordFor5)
         {
-
+            try
+            {
+                File.WriteAllText(basePath + filename + ".txt", FizzBuzzHelper(min, max, wordFor3, wordFor5));
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         //Helper function returns string that's the result of a "fizzbuzz" of the given parameters
